@@ -1,0 +1,230 @@
+:root{
+    --clr-bs-500: 0 0% 0%;
+
+    --btn-bg-clr-300: 0 0% 80%;
+    --btn-bg-clr-400: 0 0% 40%;
+    --btn-bg-clr-500: 0 0% 0%;
+
+    --btn-clr-500: 0 50% 100%;
+
+    --btn-clr-accent-300: 167 100% 80%;
+    --btn-clr-accent-500: 167 50% 50%;
+    --btn-clr-accent-700: 167 50% 30%;
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6,
+p{
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    border-style:none;
+}
+
+header{
+    display: grid;
+    grid-template-areas: 
+        "title link toolbar";
+    grid-template-columns: 1fr 1fr auto;
+    margin-bottom: 4rem;
+    min-width: 20rem;
+    padding: 1rem;
+    border: solid 1px black;
+    background-color:rgb(34, 34, 34);
+}
+
+header > .title{
+    color: white;
+}
+
+header > .link{
+    grid-area: link;
+}
+
+.invisible{
+    display: none;
+}
+
+.toolbar{
+    grid-area: toolbar;
+    align-self: center;
+}
+
+.add-btn{
+    cursor:pointer;
+    font-weight: 900;
+    font-size: 1rem;
+    border: solid 1px white;
+    background-color:hsl(var(--btn-clr-accent-300));
+}
+
+.add-btn:hover{
+    background-color:hsl(var(--btn-clr-accent-500));
+    color: white;
+}
+
+.add-btn:active{
+    background-color:hsl(var(--btn-clr-accent-700));
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.library{
+    max-width: 75rem;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.card{
+    display: grid;
+    grid-template-areas:
+        "top"
+        "content"
+        "completion";
+    background-color: white;
+    grid-template-rows: auto 1fr auto;
+    margin: 1rem;
+    height: 20rem;
+    align-items: center;
+    border-radius: 25px;
+    z-index: auto;
+    filter: drop-shadow(0px 0px 5px hsl(var(--clr-bs-500)));
+}
+
+.card__content{
+    max-width: 16.25rem;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    grid-area: content;
+    text-align: center;
+    padding: 1rem;
+}
+
+.card__content > * + *{
+    margin-top: .5rem;
+}
+
+.card > button{
+    background-color: hsl(var(--btn-bg-clr-500));
+    color: hsl(var(--btn-clr-500));
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.card > .remove{
+    cursor:pointer;
+    grid-area: top;
+    justify-self: end;
+    max-width: 2.375rem;
+    margin: .5rem 1.3rem;
+    padding: .3rem .4rem;
+    border-radius: 10px;
+    border-style: none;
+}
+
+.card__content > .title{
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.card__content > .author{
+    font-style:italic;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+.card__content > .pages{
+    font-size: 1rem;
+}
+
+.card > .is-read{
+    appearance: none;
+    cursor:pointer;
+    grid-area: completion;
+    padding: 1rem;
+    box-shadow: 0px 0px 2px hsl(var(--clr-bs-500));
+    background-color: white;
+    margin: 0rem;
+}
+
+.card > .is-read--selected{
+    background-color: hsl(var(--btn-clr-accent-300));
+}
+
+.popup-form{
+    box-shadow: 0px 0px 2px hsl(var(--clr-bs-500));
+    background-color:white;
+    z-index: 1;
+    position:fixed;
+    right: 3rem;
+    top: 2rem;
+    padding: 2rem;
+}
+
+.book-form > input{
+    margin-bottom: .5rem;
+}
+
+.book-form > [type="submit"]{
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: hsl(var(--btn-bg-clr-300));
+}
+.book-form > [type="submit"]:hover{
+    background-color: hsl(var(--btn-bg-clr-400));
+    color: white;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    .card{
+        position: relative;
+    }
+
+    .card::before{
+        content: "";
+        background-color: transparent;
+        position:absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        border-radius: 25px;
+        box-shadow: 0px 0px 3px hsl(var(--clr-bs-500));
+    }
+
+    .card > .read{
+        position: relative;
+    }
+
+    .card > .read::before{
+        content: "";
+        background-color: transparent;
+        position:absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px hsl(var(--clr-bs-500));
+    }
+}
